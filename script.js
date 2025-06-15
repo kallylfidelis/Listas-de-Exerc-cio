@@ -1,35 +1,18 @@
-let inputNum1 = document.querySelector("#inputNum1");
-let inputNum2 = document.querySelector("#inputNum2");
-let inputNum3 = document.querySelector("#inputNum3");
-let btCalcular = document.querySelector("#btCalcular");
-let h3Resultado = document.querySelector("#h3Resultado");
+var inputValor1 = document.querySelector('#inputValor1');
+var inputValor2 = document.querySelector('#inputValor2');
+var btCalcular = document.querySelector('#btCalcular');
+var h3Resultado = document.querySelector('#h3Resultado');
 
-function calcularMedias() {
-    let num1 = Number(inputNum1.value);
-    let num2 = Number(inputNum2.value);
-    let num3 = Number(inputNum3.value);
-
-    // Cálculo da média aritmética
-    let mediaAritmetica = (num1 + num2 + num3) / 3;
-
-    // Cálculo da média ponderada com pesos 3, 2 e 5
-    let somaValoresPeso = (num1 * 3) + (num2 * 2) + (num3 * 5);
-    let somaPesos = 3 + 2 + 5;
-    let mediaPonderada = somaValoresPeso / somaPesos;
-
-    // Soma das duas médias
-    let somaMedias = mediaAritmetica + mediaPonderada;
-
-    // Média das médias
-    let mediaDasMedias = somaMedias / 2;
-
-    // Exibir resultados
-    h3Resultado.textContent = "Média Aritmética: " + mediaAritmetica.toFixed(2) + 
-                               " | Média Ponderada: " + mediaPonderada.toFixed(2) + 
-                               " | Soma das Médias: " + somaMedias.toFixed(2) + 
-                               " | Média das Médias: " + mediaDasMedias.toFixed(2);
+function calcularMaiorValor() {
+    var valor1 = Number(inputValor1.value);
+    var valor2 = Number(inputValor2.value);
+    if (isNaN(valor1) || isNaN(valor2)) {
+        h3Resultado.textContent = "Por favor, insira valores válidos.";
+        return;
+    }
+    var maiorValor = valor1 > valor2 ? valor1 : valor2;
+    h3Resultado.textContent = "O maior valor é: " + maiorValor;
 }
-
 btCalcular.onclick = function() {
-    calcularMedias();
+    calcularMaiorValor();
 }
