@@ -1,22 +1,21 @@
-var inputValorQuilo = document.querySelector('#valorQuilo');
-var inputQuantidadeProdutos = document.querySelector('#quantidadeProdutos');
+var inputSaldo = document.querySelector('#saldo');
 var btCalcular = document.querySelector('#btCalcular');
 var h3Resultado = document.querySelector('#h3Resultado');
 
-function calcularQuilo() {
-    var valor = Number(inputValorQuilo.value);
-    var quantidade = Number(inputQuantidadeProdutos.value);
+function calcularReajuste() {
+    var saldo = Number(inputSaldo.value);
 
-    if (valor <= 0 || quantidade <= 0) {
-        h3Resultado.textContent = "Insira um valor válido e/ou positivo.";
+    if (saldo < 0) {
+        h3Resultado.textContent = "Insira um valor válido e positivo.";
         return;
     }
 
-    var valorFinal = valor * quantidade;
+    var reajuste = saldo * 0.01;
+    var saldoFinal = saldo + reajuste;
 
-    h3Resultado.textContent = "Valor a ser pago R$ " + valorFinal.toFixed(2);
+    h3Resultado.textContent = "Saldo com reajuste: R$ " + saldoFinal.toFixed(2);
 }
 
 btCalcular.onclick = function() {
-    calcularQuilo();
+    calcularReajuste();
 }
