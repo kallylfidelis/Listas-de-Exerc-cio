@@ -1,30 +1,22 @@
-var valorPago = document.querySelector ('#valorPago')
-var valorProduto = document.querySelector ('#valorProduto')
-var btVerificar = document.querySelector ('#btVerificar')
-var h3Resultado = document.querySelector ('#h3Resultado')
+var inputValorQuilo = document.querySelector('#valorQuilo');
+var inputQuantidadeProdutos = document.querySelector('#quantidadeProdutos');
+var btCalcular = document.querySelector('#btCalcular');
+var h3Resultado = document.querySelector('#h3Resultado');
 
-function VerificarTroco() {
-    var pago = Number (valorPago.value);
-    var preco = Number (valorProduto.value);
-    var troco = Number (valorPago.value);
+function calcularQuilo() {
+    var valor = Number(inputValorQuilo.value);
+    var quantidade = Number(inputQuantidadeProdutos.value);
 
-    if (pago < preco) {
-        h3Resultado.textContent = "Valor pago insuficiente para comprar o produto."
+    if (valor <= 0 || quantidade <= 0) {
+        h3Resultado.textContent = "Insira um valor válido e/ou positivo.";
+        return;
     }
 
+    var valorFinal = valor * quantidade;
 
-    var trocoCalculado = pago - preco;
-
-    if (troco === trocoCalculado) {
-        h3Resultado.textContent = `Troco correto: R$ ${trocoCalculado.toFixed(2)}`;
-    } else if (troco < trocoCalculado) {
-        h3Resultado.textContent = `Troco informado abaixo do correto. Troco correto: R$ ${trocoCalculado.toFixed(2)}`;
-    } else {
-        h3Resultado.textContent = `Troco informado acima do correto. Troco correto: R$ ${trocoCalculado.toFixed(2)}`;
-    }
+    h3Resultado.textContent = "Valor a ser pago R$ " + valorFinal.toFixed(2);
 }
 
-btVerificar.onclick = function() {
-    VerificarTroco()
+btCalcular.onclick = function() {
+    calcularQuilo();
 }
-
